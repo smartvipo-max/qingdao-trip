@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>제 9회 집현친구들 여행기</title>
+<style>
+:root{--bg:#EDF3F2;--surface:#fff;--ink:#0F2A31;--muted:#4A666C;--line:#BFD3D6;--sea:#0E6478;--incheon:#B8392B;--gimhae:#0E6478;--all:#9A6A00;--hero:#0A3A46;--hero-ink:#F2F8F8;--accent:#F2C14E;--warn:#A4471B;--warnbg:#FBEBDD;--soft:#F3F8F8;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0A1D23;--surface:#10303A;--ink:#E6F1F1;--muted:#9DB8BC;--line:#27505C;--sea:#5CC0D2;--incheon:#F08A78;--gimhae:#5CC0D2;--all:#F2C14E;--hero:#0D4A59;--warn:#F2B27A;--warnbg:#3A2A1C;--soft:#0D2830;color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6;font-size:17px;word-break:keep-all;-webkit-text-size-adjust:100%}
+.wrap{max-width:640px;margin:0 auto;padding:0 18px}
+.hero{background:var(--hero);color:var(--hero-ink);padding:56px 0 36px}
+.hero small{display:block;color:var(--accent);font-size:15px;margin-bottom:6px}
+.hero h1{margin:0;font-size:36px;line-height:1.2;letter-spacing:-.02em}
+.hero p{margin:10px 0 0;font-size:16px;opacity:.9}
+nav{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 12px;scrollbar-width:none}
+nav a{flex:1 0 auto;text-align:center;text-decoration:none;color:var(--muted);padding:6px 12px;border:1px solid var(--line);border-radius:999px;font-size:14px;min-width:62px}
+nav a.on{background:var(--sea);border-color:var(--sea);color:#fff}
+h2{font-size:26px;margin:40px 0 6px}
+.intro{color:var(--muted);margin:0 0 14px;font-size:15px}
+.members{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.members li{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.members b{display:block;font-size:18px}
+.members span{font-size:13px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;list-style:none;margin:16px 0 0;padding:0;font-size:14px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.d-incheon{background:var(--incheon)}.d-gimhae{background:var(--gimhae)}.d-all{background:var(--all)}
+.tools{display:flex;justify-content:flex-end;margin:0 0 8px}
+.tools button,.btn{font:inherit;font-size:13px;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;cursor:pointer}
+.btn.done{background:var(--sea);border-color:var(--sea);color:#fff}
+details.row{background:var(--surface);border:1px solid var(--line);border-left-width:5px;border-radius:10px;margin:8px 0}
+details.row.incheon{border-left-color:var(--incheon)}
+details.row.gimhae{border-left-color:var(--gimhae)}
+details.row.all{border-left-color:var(--all)}
+details.row.cand{border-style:dashed;border-left-style:solid}
+summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:baseline;padding:14px 14px}
+summary::-webkit-details-marker{display:none}
+.t{flex:0 0 74px;font-weight:700;font-size:18px;color:var(--sea)}
+.n{flex:1;font-size:18px;font-weight:500}
+.n em{font-style:normal;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:0 8px;margin-left:6px;white-space:nowrap}
+summary::after{content:"+";color:var(--muted);font-size:20px}
+details[open]>summary::after{content:"–"}
+.body{padding:0 14px 14px 100px;color:var(--muted);font-size:15px}
+.body>p{margin:0 0 8px}
+.body dl{margin:8px 0 0}
+.body dl div{display:flex;gap:10px;margin:3px 0}
+.body dt{flex:0 0 64px;color:var(--ink);font-weight:700}
+.body dd{margin:0}
+.sep{margin:18px 0 4px;font-size:13px;color:var(--muted);letter-spacing:.08em}
+.place{margin:10px 0 0;padding:10px 12px;background:var(--soft);border:1px solid var(--line);border-radius:10px}
+.place .p-top{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.place .p-ko{color:var(--ink);font-size:15px}
+.flag{font-size:11px;line-height:18px;padding:0 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.flag.hot{background:var(--warnbg);border-color:var(--warn);color:var(--warn)}
+.zhrow{display:flex;gap:8px;align-items:center;justify-content:space-between;margin:4px 0}
+.zh{font-size:19px;color:var(--ink);font-weight:500;line-height:1.35;word-break:break-all;user-select:all;-webkit-user-select:all}
+.zh.sm{font-size:14px;font-weight:400;color:var(--muted)}
+.place .p-tip{margin:4px 0 6px;font-size:14px;color:var(--muted)}
+.place .p-note{margin:2px 0 4px;font-size:12px;color:var(--warn)}
+.place a.go{display:inline-block;font-size:13px;color:var(--sea);text-decoration:none;border:1px solid var(--sea);border-radius:999px;padding:3px 12px}
+.keys{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.keys .btn{color:var(--ink)}
+.keys small{color:var(--muted);margin-left:4px}
+.planb{margin:26px 0 8px;border:2px dashed var(--accent);border-radius:14px;background:var(--surface)}
+.planb>summary{padding:16px 16px;font-weight:700;font-size:18px;align-items:center}
+.planb>summary span{flex:1}
+.planb>summary em{font-style:normal;font-size:12px;font-weight:500;color:var(--all);border:1px solid var(--all);border-radius:999px;padding:0 8px}
+.planb-in{padding:0 12px 14px}
+.taxi{background:var(--surface);border:2px solid var(--sea);border-radius:12px;padding:14px 16px;margin:22px 0 0}
+.taxi h3{margin:0 0 6px;font-size:16px;color:var(--sea)}
+.taxi .zh{font-size:22px}
+.taxi p{margin:4px 0;color:var(--muted);font-size:13px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:10px 0}
+.card h3{margin:0 0 6px;font-size:18px}
+.card ul{margin:0;padding-left:18px;color:var(--muted);font-size:15px}
+.card li{margin:4px 0}
+.zhlist .grp{font-size:14px;color:var(--sea);font-weight:700;margin:20px 0 6px}
+.zhlist .it{display:flex;gap:8px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:6px 0}
+.zhlist .it .l{min-width:0}
+.zhlist .it .k{font-size:13px;color:var(--muted)}
+.zhlist .it .z{font-size:17px;word-break:break-all;user-select:all;-webkit-user-select:all}
+.zhlist .acts{display:flex;gap:6px;flex:none}
+.zhlist a{font-size:13px;color:var(--sea);text-decoration:none;border:1px solid var(--sea);border-radius:999px;padding:4px 10px}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.checks label{display:flex;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:15px;cursor:pointer}
+.checks input{width:20px;height:20px;accent-color:var(--sea);flex:none}
+.checks input:checked+span{text-decoration:line-through;color:var(--muted)}
+.foot{margin:36px 0 0;padding:16px 0 48px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.n em.dec{color:#fff;background:var(--warn);border-color:var(--warn);font-weight:700}
+.decnote{margin:8px 0;padding:8px 12px;background:var(--warnbg);border-left:4px solid var(--warn);border-radius:0 8px 8px 0;color:var(--ink);font-size:14px}
+.decnote b{color:var(--warn)}
+.decbox{margin:16px 0 0;padding:12px 14px;background:var(--warnbg);border:1px solid var(--warn);border-radius:12px;font-size:15px;color:var(--ink)}
+.decbox b{color:var(--warn)}
+.card h3 em.dec{font-style:normal;font-size:12px;color:#fff;background:var(--warn);border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:middle}
+.routemap{margin:18px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 14px 12px}
+.routemap figcaption{font-weight:700;margin:0 0 6px;font-size:18px}
+.routemap svg{display:block;width:100%;height:auto}
+.routemap p{margin:8px 0 0;font-size:14px;color:var(--muted)}
+.rm-line path,.rm-fly{fill:none;stroke-width:2.5;stroke-linecap:round}
+.rm-line.gimhae path,.rm-fly.gimhae{stroke:var(--gimhae)}.rm-line.incheon path,.rm-fly.incheon{stroke:var(--incheon)}
+.rm-fly{stroke-dasharray:6 6}
+.rm-name rect,.rm-air rect,.rm-goal rect{fill:var(--surface);stroke-width:2}
+.rm-name.gimhae rect,.rm-air.gimhae rect{stroke:var(--gimhae)}.rm-name.incheon rect,.rm-air.incheon rect{stroke:var(--incheon)}
+.rm-goal rect{stroke:var(--all);fill:var(--bg)}
+.rm-name text,.rm-air text,.rm-goal text{fill:var(--ink);font-size:12px;font-weight:700;text-anchor:middle}
+.rm-air text,.rm-goal text{font-size:13px}
+.rm-air text.sm,.rm-goal text.sm{font-size:10.5px;font-weight:500;fill:var(--muted)}
+.rm-time{font-size:11px;font-weight:700;text-anchor:middle}
+.rm-time.gimhae{fill:var(--gimhae)}.rm-time.incheon{fill:var(--incheon)}
+@media (max-width:420px){.body{padding-left:14px}.t{flex-basis:66px;font-size:17px}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <small>집현회</small>
+  <h1>제 9회 집현친구들 여행기</h1>
+  <p>칭다오 3박 4일 · 2026.11.26(목) ~ 11.29(일)</p>
+</div></header>
+
+<nav><div class="wrap" id="nav"></div></nav>
+
+<main class="wrap">
+  <section id="dep">
+  <h2>여행 멤버</h2>
+  <ul class="members">
+    <li><b>웅이</b><span>사천 · 김해 출발</span></li>
+    <li><b>군세</b><span>진주 · 김해 출발</span></li>
+    <li><b>나</b><span>마산 · 김해 출발</span></li>
+    <li><b>세워이</b><span>양주 · 인천 출발</span></li>
+    <li><b>준미</b><span>부평 · 인천 출발</span></li>
+  </ul>
+  <ul class="legend">
+    <li><i class="dot d-incheon"></i>인천팀 (2명)</li>
+    <li><i class="dot d-gimhae"></i>김해팀 (3명)</li>
+    <li><i class="dot d-all"></i>다 같이</li>
+  </ul>
+<figure class="routemap"><figcaption>우리 다섯이 칭다오까지 가는 길</figcaption><svg viewBox="0 0 340 290" role="img" aria-label="김해팀 3명과 인천팀 2명이 칭다오에서 합류하는 경로">
+<g class="rm-line gimhae"><path d="M120 35 C145 35 135 70 150 70"/><path d="M120 75 L150 75"/><path d="M120 115 C145 115 135 80 150 80"/></g>
+<g class="rm-line incheon"><path d="M120 195 C145 195 135 218 150 218"/><path d="M120 235 C145 235 135 222 150 222"/></g>
+<g class="rm-name gimhae"><rect x="8" y="20" width="112" height="30" rx="10"/><text x="64" y="39">웅이 · 사천</text></g><g class="rm-name gimhae"><rect x="8" y="60" width="112" height="30" rx="10"/><text x="64" y="79">군세 · 진주</text></g><g class="rm-name gimhae"><rect x="8" y="100" width="112" height="30" rx="10"/><text x="64" y="119">나 · 마산</text></g><g class="rm-name incheon"><rect x="8" y="180" width="112" height="30" rx="10"/><text x="64" y="199">세워이 · 양주</text></g><g class="rm-name incheon"><rect x="8" y="220" width="112" height="30" rx="10"/><text x="64" y="239">준미 · 부평</text></g>
+<g class="rm-air gimhae"><rect x="150" y="48" width="84" height="54" rx="12"/><text x="192" y="71">김해공항</text><text class="sm" x="192" y="88">셋이 합류</text></g>
+<g class="rm-air incheon"><rect x="150" y="193" width="84" height="54" rx="12"/><text x="192" y="216">인천공항</text><text class="sm" x="192" y="233">둘이 합류</text></g>
+<path class="rm-fly gimhae" d="M234 75 C262 75 250 130 262 140"/><path class="rm-fly incheon" d="M234 220 C262 220 250 170 262 160"/>
+<g class="rm-goal"><rect x="250" y="118" width="84" height="64" rx="12"/><text x="292" y="143">칭다오</text><text class="sm" x="292" y="159">5명 합류</text><text class="sm" x="292" y="173">12:15경</text></g>
+<text class="rm-time gimhae" x="240" y="38" style="text-anchor:start">11:35 도착</text>
+<text class="rm-time incheon" x="192" y="268">09:45 도착</text>
+</svg><p>김해팀 3명, 인천팀 2명이 각자 공항에서 모여서 비행기 타고 칭다오에서 만남. 도착 시각은 현지 기준.</p></figure>
+  <p class="intro" style="margin-top:14px">일정은 상황 따라 언제든 바뀜. 시간 누르면 세부 내용이랑 한자 이름이 나옴. 점선 칸은 '후보'라서 아직 미확정이고, 점선 테두리 박스는 갈아탈 수 있는 '플랜 B'임.</p>
+  <div class="decbox"><b>결정 전</b> 표시는 아직 안 정해서 디스코드 통화에서 같이 정할 항목임. 정해지면 이 표시 지우고 내용 바꿈.</div>
+
+  <div class="taxi" id="taxi"></div>
+  </section>
+
+  <div id="days"></div>
+  <div id="zh"></div>
+  <div id="info"></div>
+
+  <p class="foot">집현회 제 9회 칭다오 여행 · 2026.11.05 기준 정리본 · 시각은 전부 현지 기준(한국보다 1시간 느림). '예상' 표시된 시각이랑 요금은 상황 따라 바뀔 수 있음. 가게 정보(한자 이름, 주소, 지도 링크)는 2026.10.25 기준 자료라서 영업 여부는 가기 전에 고덕지도에서 다시 확인함.</p>
+</main>
+
+<script>
+/* ========= 가게 정보 (엑셀에서 자동으로 넣은 부분) ========= */
+const P = {"56": {"ko": "하이디라오 CBD점", "tip": "숙소 근처 훠궈집. 엑셀에 층이 안타이 광장 2층 / 완다광장 4층으로 다르게 적혀 있어서 링크로 정확한 위치 확인함.", "flags": [], "zh": "海底捞火锅(CBD万达广场店)", "addr": "ShibeiNo.112, Yanji Road Qingdao CBD Wanda Plaza 4F Cengbai 4F Cizhu Room 2", "link": "https://surl.amap.com/1TUh7YYCA3K9", "area": "둔화루역", "engaddr": true}, "55": {"ko": "루시허 (디저트)", "tip": "버터떡, 모찌 같은 디저트로 SNS에서 유명한 집. 둔화루역에서 도보 10분 안팎이고 숙소와의 거리는 지도로 확인.", "flags": ["SNS 유명"], "zh": "Luxihe Pastry (City Beijing East MALL Shop)", "addr": "京东mall一层29号泸溪河", "link": "https://surl.amap.com/1Utc0zbw1v68h", "area": "둔화루역", "engaddr": false}, "40": {"ko": "성미카엘 성당", "tip": "칭다오 대표 성당. 월요일은 내부 휴관이고 입장료 1인 10위안. 맞은편에 칭다오 기념품숍 있음.", "flags": [], "zh": "天主教青岛教区圣弥厄尔主教座堂天主堂", "addr": "浙江路15号", "link": "https://surl.amap.com/33gXb6N416egj", "area": "중산로", "engaddr": false}, "45": {"ko": "춘화루 중산로 본점", "tip": "닭튀김, 탕수육, 오이냉채, 만두 같은 산둥식 메뉴.", "flags": [], "zh": "春和楼(中山路总店)", "addr": "中山路146号(中山路地铁站D口步行270米)", "link": "https://surl.amap.com/1XBtTfDgfbli", "area": "중산로", "engaddr": false}, "43": {"ko": "동방자오차 (딤섬)", "tip": "딤섬집. 홍미창펀, 새우 샤오마이.", "flags": [], "zh": "东方早茶(上街里店)", "addr": "四方路45号(中山路地铁站D口步行150米)", "link": "https://surl.amap.com/1XjTYjqK1b0wo", "area": "중산로", "engaddr": false}, "46": {"ko": "메이다얼 중산로점", "tip": "가지튀김, 꿔바로우, 바지락볶음, 계란볶음밥. 오픈런 추천이고 웨이팅 2시간 넘을 수 있음. 음식도 늦게 나옴.", "flags": ["웨이팅 김", "오픈런"], "zh": "美达尔烧烤海鲜家常菜(中山路店)", "addr": "中山路125号(近中山路派出所)", "link": "https://surl.amap.com/16oiBqEC1ofgm", "area": "중산로", "engaddr": false}, "49": {"ko": "잔교", "tip": "칭다오 맥주 로고에 그려진 해안 명소.", "flags": [], "zh": "栈桥", "addr": "市南区", "link": "https://surl.amap.com/1C1zlYZoVg7v", "area": "은어항", "engaddr": false}, "48": {"ko": "은어항 거리", "tip": "카페, 소품샵, 편집숍이 모인 MZ 핫플 거리.", "flags": ["MZ 핫플"], "zh": "银鱼巷", "addr": "宁阳路(青岛站地铁站B口步行140米)", "link": "https://surl.amap.com/33sc6t1g1BeEP", "area": "은어항", "engaddr": false}, "50": {"ko": "M Stand (카페)", "tip": "라떼 맛집. 웨이팅 있을 수 있음.", "flags": ["웨이팅 가능"], "zh": "M Stand(青岛银鱼巷店)", "addr": "宁阳路17号(银鱼巷内SFY院门旁)", "link": "https://surl.amap.com/1THXWQ7Q10ecI", "area": "은어항", "engaddr": false}, "63": {"ko": "산동만두", "tip": "하이포치아오 아침시장 만두집. 새벽 5:30 오픈. 3번 대하, 5번 장조림, 7번 고구마줄기 만두 추천.", "flags": [], "zh": "山东大包(海泊桥总店)", "addr": "鞍山路与本溪路交叉口东60米", "link": "https://surl.amap.com/21nCSXuSqcu9", "area": "하이포치아오역", "engaddr": false}, "64": {"ko": "칭다오 맥주박물관", "tip": "트립닷컴 등으로 미리 예약 추천. 일반 입장권 약 1.2만 원, 품절이면 기념품 패키지 약 1.7만 원(캔맥주 3병쯤 랜덤). 광라오루역에서 도보 10분.", "flags": ["예약 추천"], "zh": "青岛啤酒博物馆", "addr": "登州路56-1", "link": "https://surl.amap.com/30J3K3ES190FR", "area": "광라오루역", "engaddr": false}, "38": {"ko": "대하푸 바베큐", "tip": "양꼬치, 부추구이, 옥수수 연유구이, 팽이버섯 당면, 마라롱샤, 꿔바로우. 후기상 제일 자극적이고 맛있었고 웨이팅 없었음. 재래식 화장실(깨끗했다고 함). 타이동 시장에서 도보 11분.", "flags": ["실내 흡연 가능"], "zh": "大哈福烧烤(丰盛路单位宿舍店)", "addr": "青岛市市北区延安三路25号", "link": "https://surl.amap.com/3s0UL2TkB3Xf", "area": "타이동", "engaddr": false}, "37": {"ko": "무예슬거 양꼬치", "tip": "양꼬치 맛집. 저녁에 열고 피크에는 웨이팅 2시간 넘음. 오후 4시 첫 타임이 좋고, 아니면 웨이팅 걸어놓고 야시장 다녀옴. 야시장에서 도보 14분.", "flags": ["웨이팅 김"], "zh": "牧野石歌羊肉串", "addr": "四平路39号甲", "link": "https://surl.amap.com/34ZxvY9Yu0lz", "area": "타이동", "engaddr": false}, "36": {"ko": "타이동 야시장", "tip": "맥주거래소, 꿔바로우, 과일모찌, 완탕면 같은 먹거리 거리.", "flags": [], "zh": "台东步行街", "addr": "台东三路(台东地铁站E口步行160米)", "link": "https://surl.amap.com/33yfLTHk135Kh", "area": "타이동", "engaddr": false}, "39": {"ko": "사희당 (에그타르트)", "tip": "야시장 근처 에그타르트 맛집.", "flags": [], "zh": "狮喜棠", "addr": "市北区利群商厦东南门旁台东三路(地铁f口步行50米)", "link": "https://surl.amap.com/1UbKT5Vc1wbX5", "area": "타이동", "engaddr": false}, "35": {"ko": "무씨진공부 11호점", "tip": "가성비 발마사지. 위챗 예약 가능(ID li83830769). 야시장에서 도보 10분.", "flags": ["위챗 예약"], "zh": "武氏真功夫(第11分店-市北区历城路店)", "addr": "历城路6号(台东地铁站A口步行250米)", "link": "https://surl.amap.com/1WceuV9QiaOj", "area": "타이동", "engaddr": false}, "11": {"ko": "루위 (카오위)", "tip": "한국 사람들이 좋아하는 구이 생선 집. 농어찜 마늘맛에 팽이버섯, 라면 사리, 오이무침, 흰쌀밥 조합 추천. 브레이크타임 14:30~16:30이고 오픈런 10:30 / 16:30 추천.", "flags": ["사람 많음", "오픈런"], "zh": "炉鱼(青岛万象城店)", "addr": "山东路6号甲青岛万象城L5层L-511", "link": "https://surl.amap.com/32J3UFwuJ206", "area": "믹스몰", "engaddr": false}, "8": {"ko": "명가딤섬", "tip": "홍미창펀, 크리스탈 새우만두, 성게 창펀 같은 딤섬. 믹스몰 5층.", "flags": [], "zh": "铭家点心", "addr": "山东路6号甲青岛万象城1期L5层L-502", "link": "https://surl.amap.com/1T0QTfZI1raqO", "area": "믹스몰", "engaddr": false}, "10": {"ko": "외파가", "tip": "홍소육, 마늘당면새우, 마파두부, 볶음밥. 믹스몰 5층.", "flags": [], "zh": "外婆家(青岛万象城店)", "addr": "中山路街道山东路10号万象城5楼", "link": "https://surl.amap.com/1UnAD1oWb5VM", "area": "믹스몰", "engaddr": false}, "14": {"ko": "위쿠 (카오위)", "tip": "현지인들이 좋아하는 구이 생선 집. 믹스몰 3층.", "flags": [], "zh": "鱼酷活鱼烤鱼(青岛万象城店)", "addr": "青岛市市南区山东路6号甲万象城二期3层CL303", "link": "https://surl.amap.com/2M2CwN9AmfvS", "area": "믹스몰", "engaddr": false}, "7": {"ko": "선사어수교", "tip": "생선 만두, 오징어먹물 만두, 배추새우 만두. 믹스몰 지하 1층.", "flags": [], "zh": "船歌·鱼水饺青岛菜(青岛万象城店)", "addr": "山东路华润万象城B1", "link": "https://surl.amap.com/1XrExnUO1eagD", "area": "믹스몰", "engaddr": false}, "6": {"ko": "용가훠궈 (무한리필)", "tip": "인당 1만원대 무한리필 훠궈. 선결제 후 육수 고르고 자리 안내, 90분 제한. 믹스몰 2층 9번 게이트 바로 앞.", "flags": [], "zh": "龍歌自助小火锅(市南万象城店)", "addr": "湛山街道山东路6号万象城1期W时区2楼L286b(9号门门口)", "link": "https://surl.amap.com/33zDAiqeI1VF", "area": "믹스몰", "engaddr": false}, "22": {"ko": "바오스푸 (에그타르트)", "tip": "가성비 좋은 에그타르트, 개당 4.5위안. 믹스몰 2층.", "flags": [], "zh": "鲍师傅糕点(青岛万象城店)", "addr": "青岛市市南区山东路6号甲青岛万象城L2层N215", "link": "https://surl.amap.com/huTUCjE1mccq", "area": "믹스몰", "engaddr": false}, "21": {"ko": "차오브율리안 (에그타르트)", "tip": "에그타르트 개당 12위안. 믹스몰 LG층 하겐다즈 옆.", "flags": [], "zh": "裕莲茶楼(青岛万象城店)", "addr": "山东路6号甲青岛万象城G120号", "link": "https://surl.amap.com/1X6qrKQuU5bX", "area": "믹스몰", "engaddr": false}, "17": {"ko": "스타벅스 리저브", "tip": "믹스몰 1층.", "flags": [], "zh": "星巴克臻选(青岛万象城3店)", "addr": "山东路6号华润中心万象城1层", "link": "https://surl.amap.com/1YaJ4BxQ1cbwl", "area": "믹스몰", "engaddr": false}, "23": {"ko": "라이프 슈퍼마켓", "tip": "현지 식료품과 잡화 사는 대형 마트. 믹스몰 LG층.", "flags": [], "zh": "丽达超市(青岛万象城店", "addr": "青岛市市南区山东路6号甲青岛万象城1期LG层", "link": "https://surl.amap.com/33EmGJoy1ofNS", "area": "믹스몰", "engaddr": false}, "27": {"ko": "5.4광장 (오사광장)", "tip": "야경 맛집. 건물 레이저쇼가 있고, 올림픽요트경기장 쪽 풍경은 건너편에서 전체가 보임.", "flags": [], "zh": "五四广场", "addr": "东海西路(五四广场地铁站C口步行170米)", "link": "https://surl.amap.com/324q0p4mD3bG", "area": "5.4광장", "engaddr": false}, "30": {"ko": "하이디라오 은좌광장점", "tip": "인존(银座)몰 6층. 푸산숴역 바로 옆이고 5.4광장에서 도보 11분.", "flags": [], "zh": "海底捞火锅(银座广场店)", "addr": "香港中路31号银座中心6楼(浮山所地铁站C口旁)", "link": "https://surl.amap.com/1Tv7p7saw0I2", "area": "5.4광장", "engaddr": false}, "34": {"ko": "전해연 (해산물 요리)", "tip": "개불 덮밥, 당면새우, 바지락볶음. 인존몰 6층, 푸산숴역 바로 옆.", "flags": [], "zh": "前海沿·海鲜水饺青岛菜(五四广场银座店)", "addr": "香港中路29号银座6楼", "link": "https://surl.amap.com/2a6OoQ8mg9Tn", "area": "5.4광장", "engaddr": false}, "33": {"ko": "대홍문 양꼬치 민강로점", "tip": "양갈비살, 바지락볶음, 오이무침, 팽이버섯구이. 흡연 / 금연 구역이 나뉨(타이동 쪽 지점은 전부 흡연). 5.4광장에서 도보 18분.", "flags": ["흡연구역 있음"], "zh": "大红门济南烧烤(闽江路店)", "addr": "闽江路118号甲", "link": "https://surl.amap.com/1W0hR0OOxcTk", "area": "5.4광장", "engaddr": false}, "1": {"ko": "영족당 (발마사지)", "tip": "믹스몰에서 도보 3분. 위챗 예약 가능(ID yingzutangbaojia).", "flags": ["위챗 예약"], "zh": "盈足堂SPA(万象城店)", "addr": "海门路57号(香格里拉饭店旁瑞纳康都1层)", "link": "https://surl.amap.com/1VHVlq18W1r0", "area": "믹스몰", "engaddr": false}, "28": {"ko": "구적족도 (발마사지)", "tip": "칭다오 지점 중 가장 깨끗하다는 평. 사람 많은 편이라 위챗 예약(ID yang45455565). 5.4광장에서 도보 9분.", "flags": ["사람 많음", "위챗 예약"], "zh": "鸥迪足道(闽江路店)", "addr": "闽江路19号", "link": "https://surl.amap.com/29G2rQR87Ec", "area": "5.4광장", "engaddr": false}, "25": {"ko": "판다 헤드스파", "tip": "믹스몰 LG층 헤드스파. 위챗 사전 예약, 1시간 2만원대.", "flags": ["위챗 예약"], "zh": "熊猫头疗(万象城店)", "addr": "万象城二期LG层丽达超市入口", "link": "https://surl.amap.com/1V31gkKi1716X", "area": "믹스몰", "engaddr": false}, "29": {"ko": "이온몰", "tip": "대형마트, 베이커리, 스포츠 브랜드. 5.4광장에서 도보 16분.", "flags": [], "zh": "永旺东部购物中心", "addr": "香港中路72号", "link": "https://surl.amap.com/1XWf5euOjd7A", "area": "5.4광장", "engaddr": false}, "53": {"ko": "소어산 (북문)", "tip": "무료 뷰 포인트. 북문에서 내리면 정상까지 5분.", "flags": [], "zh": "小鱼山(北门)", "addr": "青岛市市南区八大关街道福山支路24号小鱼山内(北侧)", "link": "https://surl.amap.com/1CizOgR0lehn", "area": "대학로/소어산", "engaddr": false}, "52": {"ko": "루쉰공원", "tip": "바다 따라 걷는 해안 산책길.", "flags": [], "zh": "鲁迅公园", "addr": "琴屿路1号", "link": "https://surl.amap.com/1Y90TeYeK8q0", "area": "대학로/소어산", "engaddr": false}, "54": {"ko": "화춘식당", "tip": "대학로~소어산 근처 현지인 맛집. 가지볶음, 가리비 요리, 바지락볶음.", "flags": [], "zh": "华春餐馆", "addr": "ShinanYushan Road No.20 (People's Auditorium Subway Station Entrance & Exit B Pedestrian 340 Meters)", "link": "https://surl.amap.com/1U41WIVU199hC", "area": "대학로/소어산", "engaddr": true}, "32": {"ko": "샹이거 (북경오리)", "tip": "가성비 북경오리. 가게가 좁아서 웨이팅이 있고 배달 주문 추천.", "flags": ["웨이팅"], "zh": "上逸阁老北京焖炉烤鸭(漳州二路店)", "addr": "青岛市市南区漳州二路115号甲(燕儿岛路地铁站B口步行470米)", "link": "https://surl.amap.com/34nUfZuO1eaOj", "area": "5.4광장", "engaddr": false}, "62": {"ko": "칭다오 자오둥 국제공항", "tip": "공항.", "flags": [], "zh": "青岛胶东国际机场", "addr": "胶东机场地铁站出口步行180米", "link": "https://surl.amap.com/1BSdrkCmucZG", "area": "공항", "engaddr": false}, "H": {"ko": "메후드 레스티 호텔 칭다오 CBD", "zh": "", "addr": "青岛市市北区镇海路28号安泰广场2号楼", "en": "Building 2, Antai Plaza, No. 28 Zhenhai Road, Shibei, Qingdao", "tip": "영문 주소를 중국어로 옮긴 거라 트립닷컴 예약서에 나온 중국어 주소랑 한 번 맞춰 봄.", "flags": [], "link": "", "area": "숙소", "engaddr": false}};
+
+/* ========= 일정 데이터: 여기만 고치면 됨 =========
+ team: 'incheon' | 'gimhae' | 'all'   cand: true 면 후보(점선)
+ notes: [['제목','내용'], ...]   places: [가게번호, ...]   keys: [{zh,ko}]  (고덕지도 검색어) */
+const DAYS = [
+ {id:'day1', label:'1일차', date:'11/26 목', intro:'오후에야 숙소에 도착하니까 첫날은 빡세게 안 감. 숙소 근처에서 요기하고 가볍게 걷다가 저녁은 훠궈임.', items:[
+  {sep:'도착 · 합류'},
+  {t:'09:45', title:'인천팀 칭다오 도착', team:'incheon', desc:'공항에서 김해팀 올 때까지 대기함. 알리페이, 환전 해두고 기다림. eSIM은 기훈이가 사서 각자한테 QR 보내줌.'},
+  {t:'11:35', title:'김해팀 칭다오 도착', team:'gimhae', desc:'입국심사 받고 짐 찾아서 나옴.'},
+  {t:'12:15경', title:'다 같이 합류 + 픽업 기사님', team:'all', tag:'예상', desc:'공항 미팅 서비스로 기사님 만나서 차 탐. 기사님이 이름 적힌 피켓 들고 있음.', dec:'합류 시각이 12:15경으로 맞는지, 5명 + 캐리어 5개가 한 차에 실리는지 기사님께 확인.', notes:[['차량','차량번호는 단톡방에 따로 공유함'],['인원','5명 + 캐리어 5개 (공간 되는지 기사님께 확인)'],['요금','5명 합쳐 약 7만 원']]},
+  {t:'12:30경', title:'숙소로 이동 (약 1시간)', team:'all', tag:'예상', desc:'공항에서 숙소까지 약 50km라 차로 1시간쯤 걸림. 차에서 잠깐 쉼. 교통 상황 따라 달라짐.', notes:[['숙소','메후드 레스티 호텔 칭다오 CBD']]},
+  {sep:'오후'},
+  {t:'13:30경', title:'숙소 도착, 짐 풀기', team:'all', tag:'예상', desc:'패밀리 스위트에 엑스트라 베드 놓고 5명 같이 묵음. 체크인이 아직 안 되면 짐만 맡기고 나감.', places:['H']},
+  {t:'14:00경', title:'숙소 근처에서 간단히 요기', team:'all', tag:'미정', cand:true, desc:'저녁이 훠궈라서 면이나 만두로 가볍게 먹음. 엑셀에는 숙소 바로 옆으로 확인된 식당이 없어서, 고덕지도에서 아래 검색어로 근처 가게를 찾아서 고름.', keys:[{zh:'面馆',ko:'국수집'},{zh:'水饺',ko:'물만두'},{zh:'包子',ko:'찐만두'}]},
+  {t:'15:00경', title:'카페 한 잔', team:'all', tag:'미정', cand:true, desc:'카페는 아직 고민 중. 엑셀에서 이쪽 구역으로 나오는 디저트집은 루시허 하나인데 SNS 유명집이라 붐빌 수 있음. 아니면 근처 카페를 검색해서 고름.', places:[55], keys:[{zh:'咖啡',ko:'카페'}]},
+  {t:'16:00경', title:'숙소 근처 산책', team:'all', tag:'미정', cand:true, desc:'해안가를 걷고 싶은데 숙소에서 걸어갈 만한 바다가 있는지는 아직 확인 못 함. 고덕지도에서 숙소 기준으로 보고, 없으면 주변 공원이나 상가 거리를 걸음. 해는 5시 전후로 지고 바람이 차니까 겉옷 챙김.'},
+  {sep:'저녁 · 밤'},
+  {t:'18:00', title:'하이디라오 훠궈 (CBD점)', team:'all', desc:'한국에서도 먹던 맛이라 첫날 저녁으로 무난함. 숙소 근처 지점이라 이동이 짧음. 대기 길 수 있어서 번호표 미리 확인함.', notes:[['볼거리','변검 공연, 수타면 쇼'],['팁','마라랑 토마토 육수가 무난하다는 후기'],['서비스','젤네일 무료 서비스 있다는 후기']], places:[56]},
+  {t:'20:00경', title:'마사지는 선택', team:'all', tag:'선택', cand:true, desc:'엑셀에는 숙소 근처 마사지집이 없음. 첫날 피곤하면 패스하고, 받고 싶으면 고덕지도에서 검색함. 믹스몰 쪽 영족당, 구적족도는 2일차 플랜 B에 들어 있음.', keys:[{zh:'足疗',ko:'발마사지'},{zh:'按摩',ko:'마사지'}]},
+  {t:'밤', title:'숙소 복귀', team:'all', desc:'내일은 구시가지 걷는 날이라 일찍 쉼.'}
+ ]},
+
+ {id:'day2', label:'2일차', date:'11/27 금', intro:'구시가지 슬슬 걷고 맥주박물관 갔다가, 저녁은 타이동에서 양꼬치랑 야시장임. 믹스몰 코스는 맨 아래 플랜 B.', items:[
+  {sep:'오전'},
+  {t:'09:30', title:'늦은 아침', team:'all', desc:'호텔 조식 먹거나, 하이포치아오 아침시장 만두집(산동만두)에서 해결함. 둘째 날도 안 서두름.', places:[63]},
+  {t:'10:30', title:'성미카엘 성당', team:'all', desc:'택시로 구시가지 감. 금요일이라 내부도 들어갈 수 있음(월요일은 내부 휴관). 맞은편 기념품숍에서 칭다오 마그넷 같은 걸 구경함.', notes:[['입장료','1인 10위안']], places:[40]},
+  {t:'11:15', title:'피차이위안 골목 구경', team:'all', tag:'선택', desc:'근처 골목에서 꼬치랑 간식 구경함. 엑셀에는 없는 곳이라 한자 이름만 적어둠.', keys:[{zh:'劈柴院',ko:'피차이위안'}]},
+  {t:'12:00', title:'중산로에서 점심', team:'all', tag:'후보', cand:true, desc:'춘화루 먼저 가보고, 사람이 많으면 동방자오차(딤섬)로 바꿈. 메이다얼은 웨이팅이 너무 길어서 갈 거면 오픈런이어야 함.', places:[45,43,46]},
+  {sep:'오후'},
+  {t:'13:30', title:'잔교 산책', team:'all', desc:'중산로 따라 바다 쪽으로 걸으면 잔교 나옴. 칭다오 맥주 로고에 그려진 건축물임.', places:[49]},
+  {t:'14:15', title:'카페는 선택', team:'all', tag:'선택', cand:true, desc:'은어항 거리는 MZ 핫플이라 사람 많을 수 있음. 구경만 하고 지나가도 됨. 조용한 카페는 근처에서 따로 찾음.', places:[48,50], keys:[{zh:'咖啡',ko:'카페'}]},
+  {t:'15:30', title:'맥주박물관으로 이동', team:'all', tag:'예약 필요', desc:'택시로 이동해서 16:00 타임에 입장함. 시간대별 입장이라 미리 예약해야 함.', notes:[['입장료','일반 약 1.2만 원 / 기념품 패키지 약 1.7만 원'],['포함','원액 생맥주 2잔 + 꿀땅콩 (참고한 일정 기준)']], places:[64]},
+  {sep:'저녁 · 밤'},
+  {t:'17:45경', title:'타이동에서 양꼬치 저녁', team:'all', tag:'예상', desc:'대하푸가 웨이팅 없다는 후기라 무난함. 맛이 센 편이고 실내 흡연이 되는 가게라 참고. 무예슬거는 웨이팅이 엄청 길어서 가려면 웨이팅 걸어놓고 야시장 다녀오는 식으로.', places:[38,37]},
+  {t:'19:30경', title:'타이동 야시장', team:'all', tag:'예상', desc:'간식 들고 천천히 걷는 밤 산책임. 11월은 밤바람이 차서 노점 운영은 현장에서 확인함.', places:[36,39]},
+  {t:'21:00경', title:'발마사지는 선택', team:'all', tag:'선택', cand:true, desc:'야시장 근처 가성비 발마사지집. 위챗으로 예약함.', places:[35]},
+  {t:'22:00경', title:'택시로 숙소 복귀', team:'all', tag:'예상', dec:'디디를 한 대로 탈지 두 대로 나눠 탈지, 누가 호출하고 누가 결제할지.', desc:'디디 택시 이용함. 숙소 한자 주소는 맨 위 박스에 있음.'}
+ ],
+ planB:{title:'플랜 B · 믹스몰 코스', note:'구시가지 대신', intro:'구시가지 대신 믹스몰이랑 5.4광장 쪽에서 하루 보내는 코스임. 식당, 카페, 마사지가 한 곳에 다 모여 있어서 편한데, 사람 많은 핫한 동네라 우리 취향이 아닐 수도 있음. 숙소에서 택시로 13분쯤 걸림.', items:[
+  {t:'10:00', title:'늦은 아침 후 택시로 믹스몰', team:'all', desc:'호텔에서 아침 먹고 택시로 이동함. 루위를 오픈런으로 가고 싶으면 10:30까지 도착해야 해서 조금 일찍 나감.'},
+  {t:'11:00', title:'점심 (믹스몰 식당가)', team:'all', tag:'후보', cand:true, desc:'루위는 한국 사람들이 좋아하는 집인데 사람 많음. 오픈런이 아니면 웨이팅이 있음. 딤섬이나 가정식 쪽이 무난함.', places:[11,8,10,14,7,6]},
+  {t:'13:00', title:'믹스몰 구경', team:'all', tag:'선택', desc:'지하 마트에서 과자나 현지 식료품 구경함. 탑토이, 팝마트, 산리오 같은 소품샵도 있는데 우리 취향은 아닐 듯해서 따로 안 넣음.', places:[23]},
+  {t:'14:30', title:'카페 · 디저트', team:'all', tag:'후보', cand:true, desc:'에그타르트가 가성비 좋음. 카페는 스타벅스 리저브가 제일 무난함.', places:[22,21,17]},
+  {t:'16:30', title:'5.4광장 해안 산책', team:'all', desc:'믹스몰 바로 옆임. 해 지는 시간이라 노을이랑 야경, 건물 레이저쇼를 같이 볼 수 있음. 바람 차니까 겉옷 필수임.', places:[27]},
+  {t:'18:00', title:'저녁', team:'all', tag:'후보', cand:true, desc:'훠궈를 이미 먹었으면 해산물 요리나 양꼬치로.', places:[30,34,33]},
+  {t:'20:00', title:'발마사지', team:'all', tag:'예약 필요', desc:'영족당은 믹스몰에서 3분 거리. 구적족도는 걸어서 9분인데 사람이 많아서 예약이 필요함.', places:[1,28,25]},
+  {t:'21:30경', title:'택시로 숙소 복귀', team:'all', tag:'예상', desc:'디디 택시 이용함.'}
+ ]}},
+
+ {id:'day3', label:'3일차', date:'11/28 토', intro:'바다 쪽을 걷는 날. 소어산에서 내려다보고 해안 산책길 따라 걷다가, 저녁 전에 마사지 받음. 기념품도 이날 몰아서 삼.', items:[
+  {sep:'오전 · 점심'},
+  {t:'10:30', title:'늦잠 + 든든한 아침', team:'all', desc:'이날이 제일 많이 걷는 날이라 아침 든든하게 먹고 나감.'},
+  {t:'11:00', title:'소어산 공원 (북문)', team:'all', desc:'붉은 지붕이랑 푸른 바다 한눈에 보이는 전망 명소임. 북문에서 내리면 정상까지 5분이라 편함. 엑셀에는 무료 뷰 포인트로 나옴.', places:[53]},
+  {t:'12:00', title:'루쉰공원 해안 산책길', team:'all', desc:'소어산 다음 코스로 바다 따라 걸음. 이어서 팔대관 쪽으로 걸어가도 됨.', places:[52]},
+  {t:'12:45', title:'팔대관 + 화석루 구경', team:'all', tag:'선택', desc:'1930년대 유럽식 별장 거리. 엑셀에는 없는 곳이라 한자 이름만 적어둠. 화석루 입장료는 8.5위안 (참고한 일정 기준).', keys:[{zh:'八大关',ko:'팔대관'},{zh:'花石楼',ko:'화석루'}]},
+  {t:'13:30', title:'점심', team:'all', tag:'후보', cand:true, dec:'화춘식당 vs 샹이거. 샹이거는 영상(新都心店)과 엑셀(漳州二路店) 지점이 달라서 어느 지점으로 갈지도 정함.', desc:'화춘식당은 현지인들이 가는 집임. 샹이거 북경오리는 가게가 좁고 웨이팅이 있어서 배달 주문을 많이 추천한다고 함.', places:[54,32]},
+  {sep:'오후'},
+  {t:'15:00', title:'마트 기념품 쇼핑 + 휴식', team:'all', desc:'기념품은 이때 한 번에 삼. 마지막 날 아침에 인천팀이 일찍 떠나서임.', places:[29]},
+  {t:'17:00', title:'마사지', team:'all', tag:'예약 필요', cand:true, dec:'전신으로 갈지 발마사지로 갈지. 구적족도는 영상(망경점)과 엑셀(민강로점) 지점이 달라서 어느 지점인지도 정함.', desc:'엑셀에서 확인되는 마사지집은 전부 발마사지나 헤드스파라서, 전신마사지는 확정 못 함. 발마사지로 가거나, 전신은 아래 검색어로 따로 찾음. 구적족도는 이온몰 근처라 동선이 이어짐.', places:[28,1,25], keys:[{zh:'全身按摩',ko:'전신마사지'}]},
+  {sep:'저녁 · 밤'},
+  {t:'19:00경', title:'마지막 저녁: 해산물 or 생선요리', team:'all', tag:'후보', cand:true, desc:'마지막 저녁이라 맥주도 같이 함. 루위는 사람이 많아서 16:30 오픈런이 좋고 14:30~16:30은 브레이크타임임. 해산물집은 가격 단위(접시 / 500g) 꼭 확인함.', places:[11], keys:[{zh:'依海湾蒸汽海鲜烤肉',ko:'해산물 후보 (엑셀 외)'}]},
+  {t:'밤', title:'선택: 숙소 근처 야경 산책', team:'all', tag:'선택', desc:'소화시킬 겸 가볍게 걸음. 피곤하면 패스함. 인천팀 내일 일찍 떠나서 길게 안 잡음.'}
+ ]},
+
+ {id:'day4', label:'4일차', date:'11/29 일', intro:'인천팀이랑 김해팀 비행기 시간이 달라서 아침부터 따로 움직임.', items:[
+  {sep:'인천팀'},
+  {t:'06:30', title:'기상 + 짐 정리', team:'incheon', tag:'예상', dec:'공항 갈 때 인천팀 2명이 택시를 따로 탈지, 김해팀이랑 같이 갈지.', desc:'짐은 전날 밤에 대부분 싸둠. 공항 가는 택시는 전날 미리 디디로 예약해둠.'},
+  {t:'07:00', title:'숙소 출발', team:'incheon', tag:'예상', desc:'공항까지 약 1시간 걸림.', places:[62]},
+  {t:'10:55', title:'칭다오 출발 → 인천 13:25 도착', team:'incheon', desc:'8시쯤 공항 도착해서 수속하고 기다림.'},
+  {sep:'김해팀'},
+  {t:'08:30', title:'여유로운 아침', team:'gimhae', desc:'호텔 조식 먹고 마지막으로 근처 가볍게 걸음.'},
+  {t:'09:00경', title:'체크아웃 + 공항 이동', team:'gimhae', tag:'예상', dec:'인천팀과 같이 갈지 따로 갈지, 택시 몇 대로 갈지.', desc:'택시로 공항 감. 공항 도착은 10시 전후 예상임.'},
+  {t:'12:35', title:'칭다오 출발 → 부산 15:35 도착', team:'gimhae', desc:'수속하고 점심 먹음. 남은 위안화는 공항에서 다 씀.'}
+ ]}
+];
+
+const INFO = [
+ ['고덕지도(高德地图) 쓰는 법',['현지에서는 고덕지도가 제일 정확함. 한글이나 영어로 검색하면 안 나오는 경우가 많아서 한자로 입력해야 함.','가게 카드에서 한자 이름 옆 복사 버튼 누르고 고덕지도 검색창에 붙여넣으면 됨. "고덕지도 열기"를 누르면 바로 그 가게로 열림.','택시 탈 때는 한자 주소를 기사님한테 보여주면 됨.','정보가 2026.10.25 기준이라 영업 여부가 바뀌었을 수 있음. 가기 전에 한자 이름으로 다시 검색해서 확인함.']],
+ ['입국 · 비자',['한국 일반여권은 30일 이내 관광이면 무비자임. 발표된 무비자 기간이 2026.12.31까지라서 이번 여행은 해당됨.','입국심사에서 목적 물을 수 있으니 왕복 항공권이랑 숙소 예약 화면 폰에 저장해둠.','호텔 체크인 때 여권 보여주고 숙박 등록함.','입국 신고 전에 지문 등록이 필수라고 함. 방법은 통화에서 안내함. 입국신고서는 미리 작성해두면 빠름.','숙소 샤워기에는 필터가 없어서 샤워기 필터를 챙기는 게 좋다고 함.','시차는 한국보다 1시간 느림. 한국 12시면 칭다오 11시임.']],
+ ['결제 · 환전',['알리페이나 위챗페이 QR 결제 많이 씀. 한국에서 미리 설치하고 해외결제 카드 등록해둠.','알리페이는 한 번에 200위안 이상 결제하면 수수료 3%가 붙음. 카카오페이(Alipay+)로 되는 곳은 수수료가 없다고 함.','현금은 소액만 챙기고, 10·20·50위안 섞어두면 편함. 금액은 통화에서 정함.','공용 경비를 어떻게 걷고 누가 결제할지는 통화에서 정함. 4일 기준 1인 약 25만 원 정도로 어림함.','환율은 11/5 기준 1위안 약 201.6원임. 출발 전에 한 번 더 확인함.'],1],
+ ['통신 (eSIM)',['eSIM은 기훈이가 사서 한 명씩 QR 보내줌. 출발 전에 미리 설치 가능한지는 업체 안내대로 확인함.','중국에서는 구글 같은 서비스가 막혀 있음. eSIM으로 충분한지, VPN이 필요한지는 통화에서 확인함.']],
+ ['교통',['지하철이랑 디디(DiDi) 택시 조합이 제일 편함. 목적지 앱에 찍으면 기사님한테 전달돼서 중국어 몰라도 됨.','우리 일정은 택시 위주라 5명이 나눠 타면 부담 적음.','디디 차량을 몇 대로 나눠 탈지, 누가 호출할지는 통화에서 정함.','숙소 주소는 중국어로 캡처해둠.'],1],
+ ['한국 → 공항 이동 (김해팀)',['김해공항까지 어떻게 갈지(군세 차량 이용 여부, 주차 vs 택시·버스, 몇 시에 모일지)는 통화에서 정함.','출발 시각이 이른 편이라 전날 모이는 방법도 같이 얘기함.'],1],
+ ['레스토랑 예약 (위챗)',['웨이팅이 긴 집은 위챗으로 예약이나 줄서기가 되는 경우가 있음. 위챗 예약 가능한 마사지집은 장소 카드에 위챗 ID를 적어둠.','누가 예약을 맡을지는 통화에서 정함.']],
+ ['날씨 · 옷차림',['11월 말 2~9도에 바닷바람 셈. 해는 5시 전후로 짐.','패딩이나 방풍 겉옷, 목도리, 장갑 챙기면 야시장이랑 해안 산책이 훨씬 편함.']],
+ ['전압 · 콘센트',['220V라서 한국이랑 같음. 충전기는 대부분 겸용이라 변환기 필요 없음.','콘센트 모양이 섞여 있어서 멀티 어댑터 하나 챙김.']]
+];
+const CHECK=['여권 (유효기간 확인)','왕복 항공권 화면 저장','숙소 예약확인서 + 중국어 주소 캡처','알리페이 설치 + 해외결제 카드 등록','위챗 설치','입국신고서 미리 작성','지문 등록','샤워기 필터','고덕지도(高德地图) 설치','소액 위안화 (금액은 통화에서 정함)','eSIM QR 받아서 설치','멀티 어댑터 + 보조배터리','패딩 또는 방풍 겉옷','여행자보험','공항 픽업 예약 화면 저장'];
+
+const HOT = ['사람 많음','웨이팅','웨이팅 김','웨이팅 가능','오픈런','MZ 핫플','SNS 유명','실내 흡연 가능','흡연구역 있음'];
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cp=(text,label)=>`<button type="button" class="btn" data-copy="${esc(text)}">${label||'복사'}</button>`;
+
+function placeCard(id){
+  const p=P[id]; if(!p) return '';
+  const flags=(p.flags||[]).map(f=>`<span class="flag${HOT.includes(f)?' hot':''}">${esc(f)}</span>`).join('');
+  const zh = p.zh ? `<div class="zhrow"><span class="zh" lang="zh">${esc(p.zh)}</span>${cp(p.zh,'이름 복사')}</div>` : '';
+  const addr = p.addr ? `<div class="zhrow"><span class="zh ${p.zh?'sm':''}" lang="zh">${esc(p.addr)}</span>${cp(p.addr,'주소 복사')}</div>` : '';
+  const en = p.en ? `<div class="zh sm">${esc(p.en)}</div>` : '';
+  const note = p.engaddr ? '<p class="p-note">주소가 영문으로만 나와 있어서 지도 링크로 위치 확인함.</p>' : '';
+  const go = p.link ? `<a class="go" href="${esc(p.link)}" target="_blank" rel="noopener">고덕지도 열기</a>` : '';
+  return `<div class="place"><div class="p-top"><b class="p-ko">${esc(p.ko)}</b>${flags}</div>${zh}${addr}${en}<p class="p-tip">${esc(p.tip||'')}</p>${note}${go}</div>`;
+}
+function keysHtml(keys){
+  if(!keys||!keys.length) return '';
+  return `<div class="keys">${keys.map(k=>`<span>${cp(k.zh,esc(k.zh))}<small>${esc(k.ko)}</small></span>`).join('')}</div><p style="font-size:12px;margin:6px 0 0">눌러서 복사하고 고덕지도 검색창에 붙여넣음</p>`;
+}
+function row(it){
+  if(it.sep) return `<div class="sep">${esc(it.sep)}</div>`;
+  const notes = it.notes ? `<dl>${it.notes.map(n=>`<div><dt>${esc(n[0])}</dt><dd>${esc(n[1])}</dd></div>`).join('')}</dl>` : '';
+  const tag = (it.tag ? `<em>${esc(it.tag)}</em>` : '') + (it.dec ? `<em class="dec">결정 전</em>` : '');
+  const decn = it.dec ? `<div class="decnote"><b>정할 것</b> ${esc(it.dec)}</div>` : '';
+  const places = (it.places||[]).map(placeCard).join('');
+  return `<details class="row ${it.team}${it.cand?' cand':''}"><summary><span class="t">${esc(it.t)}</span><span class="n">${esc(it.title)}${tag}</span></summary><div class="body"><p>${esc(it.desc||'')}</p>${decn}${notes}${places}${keysHtml(it.keys)}</div></details>`;
+}
+
+document.getElementById('taxi').innerHTML = `<h3>택시 기사님께 보여주기</h3>
+  <div class="zhrow"><span class="zh" lang="zh">${esc(P.H.addr)}</span>${cp(P.H.addr,'복사')}</div>
+  <p>${esc(P.H.ko)} · ${esc(P.H.en)}</p>
+  <div class="zhrow"><span class="zh" lang="zh" style="font-size:17px">请带我去这个地址</span>${cp('请带我去这个地址','복사')}</div>
+  <p>이 주소로 데려다 달라는 말임. ${esc(P.H.tip)}</p>
+  <div class="zhrow"><span class="zh" lang="zh" style="font-size:17px">${esc(P[62].zh)}</span>${cp(P[62].zh,'복사')}</div>
+  <p>칭다오 자오둥 공항 (4일차 공항 갈 때)</p>`;
+
+document.getElementById('days').innerHTML = DAYS.map(d=>{
+  const pb = d.planB ? `<details class="planb"><summary><span>${esc(d.planB.title)}</span><em>${esc(d.planB.note)}</em></summary><div class="planb-in"><p class="intro">${esc(d.planB.intro)}</p>${d.planB.items.map(row).join('')}</div></details>` : '';
+  return `
+  <section id="${d.id}">
+    <h2>${esc(d.label)} <small style="font-size:15px;color:var(--muted);font-weight:400">${esc(d.date)}</small></h2>
+    <p class="intro">${esc(d.intro)}</p>
+    <div class="tools"><button type="button" data-toggle="${d.id}">전체 펼치기</button></div>
+    ${d.items.map(row).join('')}
+    ${pb}
+  </section>`;}).join('');
+
+/* 한자 모음 (일정에 쓴 가게만) */
+(function(){
+  const used=new Set(); const order=[];
+  DAYS.forEach(d=>{ [].concat(d.items, d.planB?d.planB.items:[]).forEach(it=>(it.places||[]).forEach(id=>{ if(id!=='H'&&id!==62&&!used.has(id)){used.add(id);order.push(id);} })); });
+  const groups={}; order.forEach(id=>{ const a=P[id].area||'기타'; (groups[a]=groups[a]||[]).push(id); });
+  const html = Object.keys(groups).map(a=>`<div class="grp">${esc(a)}</div>`+groups[a].map(id=>{ const p=P[id];
+    return `<div class="it"><div class="l"><div class="k">${esc(p.ko)}</div><div class="z" lang="zh">${esc(p.zh)}</div></div><div class="acts">${cp(p.zh,'복사')}${p.link?`<a href="${esc(p.link)}" target="_blank" rel="noopener">지도</a>`:''}</div></div>`; }).join('')).join('');
+  document.getElementById('zh').innerHTML = `<section id="zh-sec" class="zhlist"><h2>고덕지도용 한자 모음</h2><p class="intro">일정에 나온 가게를 구역별로 모아둠. 복사해서 고덕지도 검색창에 붙여넣으면 됨.</p>${html}</section>`;
+})();
+
+document.getElementById('info').innerHTML = `<section id="info-sec"><h2>여행 정보</h2>
+  ${INFO.map(i=>`<div class="card"><h3>${esc(i[0])}${i[2]?'<em class="dec">결정 전</em>':''}</h3><ul>${i[1].map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('')}
+  <h2 style="font-size:22px">출발 전 체크리스트</h2>
+  <ul class="checks">${CHECK.map(c=>`<li><label><input type="checkbox"><span>${esc(c)}</span></label></li>`).join('')}</ul></section>`;
+
+document.getElementById('nav').innerHTML = '<a href="#dep" data-id="dep">출발</a>'+DAYS.map(d=>`<a href="#${d.id}" data-id="${d.id}">${d.label}</a>`).join('')+'<a href="#zh-sec" data-id="zh-sec">한자</a><a href="#info-sec" data-id="info-sec">정보</a>';
+
+function copyText(t,btn){
+  const ok=()=>{ const o=btn.textContent; btn.textContent='복사됨'; btn.classList.add('done'); setTimeout(()=>{btn.textContent=o;btn.classList.remove('done')},1200); };
+  const fb=()=>{ try{ const a=document.createElement('textarea'); a.value=t; a.style.position='fixed'; a.style.opacity='0'; document.body.appendChild(a); a.select(); document.execCommand('copy'); document.body.removeChild(a); ok(); }catch(e){} };
+  try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(ok,fb); } else fb(); }catch(e){ fb(); }
+}
+document.addEventListener('click',e=>{
+  const c=e.target.closest('[data-copy]'); if(c){ e.preventDefault(); e.stopPropagation(); copyText(c.dataset.copy,c); return; }
+  const b=e.target.closest('[data-toggle]'); if(!b) return;
+  const ds=document.querySelectorAll('#'+b.dataset.toggle+' details.row');
+  const open=[...ds].some(x=>!x.open);
+  ds.forEach(x=>x.open=open);
+  b.textContent=open?'전체 접기':'전체 펼치기';
+});
+const secs=[...document.querySelectorAll('section')], links=[...document.querySelectorAll('nav a')];
+function upd(){let cur=secs[0].id;secs.forEach(s=>{if(s.getBoundingClientRect().top<=window.innerHeight*.35)cur=s.id});links.forEach(a=>a.classList.toggle('on',a.dataset.id===cur))}
+addEventListener('scroll',upd,{passive:true});upd();
+</script>
+</body>
+</html>
