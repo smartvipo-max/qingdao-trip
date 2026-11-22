@@ -89,6 +89,8 @@ details[open]>summary::after{content:"–"}
 .checks label{display:flex;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:15px;cursor:pointer}
 .checks input{width:20px;height:20px;accent-color:var(--sea);flex:none}
 .checks input:checked+span{text-decoration:line-through;color:var(--muted)}
+.mjh{font-size:20px;margin:26px 0 4px}.mjh small{font-size:14px;color:var(--muted);font-weight:400}
+nav a.mj{border-style:dashed;color:var(--all);border-color:var(--all)}nav a.mj.on{background:var(--all);border-color:var(--all);color:#fff;border-style:solid}
 .foot{margin:36px 0 0;padding:16px 0 48px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 .n em.dec{color:#fff;background:var(--warn);border-color:var(--warn);font-weight:700}
 .decnote{margin:8px 0;padding:8px 12px;background:var(--warnbg);border-left:4px solid var(--warn);border-radius:0 8px 8px 0;color:var(--ink);font-size:14px}
@@ -155,6 +157,7 @@ details[open]>summary::after{content:"–"}
   </section>
 
   <div id="days"></div>
+  <div id="mj"></div>
   <div id="zh"></div>
   <div id="info"></div>
 
@@ -316,7 +319,144 @@ document.getElementById('info').innerHTML = `<section id="info-sec"><h2>여행 �
   <h2 style="font-size:22px">출발 전 체크리스트</h2>
   <ul class="checks">${CHECK.map(c=>`<li><label><input type="checkbox"><span>${esc(c)}</span></label></li>`).join('')}</ul></section>`;
 
-document.getElementById('nav').innerHTML = '<a href="#dep" data-id="dep">출발</a>'+DAYS.map(d=>`<a href="#${d.id}" data-id="${d.id}">${d.label}</a>`).join('')+'<a href="#zh-sec" data-id="zh-sec">한자</a><a href="#info-sec" data-id="info-sec">정보</a>';
+/* ========= 마운자로 플랜 (선택 탭) — 기존 일정은 건드리지 않음 ========= */
+Object.assign(P,{
+ M1:{ko:'청대부원 (칭다오대학 부속병원) 시난 원구 · 국제의료부',tip:'구시가지 쪽 병원임. 네이버에는 칭다오대학 부속병원으로 나옴. 국제의료부는 영어 가능이라고 안내됨. 외국인 마운자로 처방 여부는 아직 확인 못 함.',flags:['확인 필요'],zh:'青岛大学附属医院(市南院区)',addr:'青岛市市南区江苏路16号',link:'',area:'마운자로',engaddr:false},
+ M2:{ko:'칭다오시립병원 동원 국제외래',tip:'시난구 둥하이시루 쪽 원구라는 블로그 설명이 있음. 정확한 주소는 확인 못 해서 고덕지도에 이름 붙여넣고 위치 확인함.',flags:['확인 필요'],zh:'青岛市市立医院(东院区)',addr:'',link:'',area:'마운자로',engaddr:false},
+ M3:{ko:'칭다오 유나이티드 패밀리 병원 (和睦家)',tip:'라오산구 사립 국제병원임. 영어 가능, 예약제, 진료비는 공립보다 높음. 마운자로 처방 여부는 확인 못 함. 24시간 서비스센터 4008-919191.',flags:['비용 높음'],zh:'青岛和睦家医院',addr:'',link:'',area:'마운자로',engaddr:false}
+});
+
+const MJ_DAYS=[
+ {id:'mj-d2',label:'2일차',date:'11/27 금 · 마운자로 플랜',intro:'병원 오전 외래가 12시쯤 끝나서 이날만 일찍 움직임. 5명이 각자 접수·진료·수납·약 수령을 하니까 병원에 4시간 가까이 잡음. 피차이위안이랑 은어항 카페는 시간이 안 돼서 뺐고, 나머지는 기존 2일차 코스를 가져옴.',items:[
+  {sep:'아침 · 병원'},
+  {t:'07:00',title:'이른 기상 + 호텔 조식',team:'all',desc:'이날만 일찍 일어남. 여권 5개, 현금, 알리페이, 보냉백, 얼음팩 챙김. 얼음팩은 전날 프런트에 냉동 부탁해둠.'},
+  {t:'07:45',title:'택시로 병원 이동',team:'all',tag:'예상',desc:'디디 택시 한 대에 5명 탐. 숙소에서 병원까지 시간은 고덕지도로 확인함. 아래 한자 이름 복사해서 도착지에 입력함.',places:['M1']},
+  {t:'08:15',title:'접수 (여권, 국제의료부)',team:'all',tag:'예상',desc:'1층 접수처나 국제의료부 창구에서 여권 내고 내분비과 또는 체중관리 외래로 접수함. 접수 때 현지 전화번호를 요구하는 병원이 많다고 해서 한국·로밍 번호 준비함. 병원에 미리 전화해서 5명이 같은 날 오전에 간다고 알려둠.',notes:[['준비','여권 원본, 현금 위안화, 알리페이·위챗']]},
+  {t:'08:30 – 12:00',title:'진료 → 수납 → 약 수령',team:'all',tag:'예상',desc:'진료, 수납, 약 수령은 전부 각자 함. 중국 대형병원은 접수·검사·약값을 단계별로 먼저 내는 방식이라 수납을 여러 번 할 수 있음. 처방이 안 나온 친구는 진료만 받고 먼저 나가서 근처에서 기다림.',notes:[['기준','BMI 28 이상이거나, 24 이상이면서 고혈압 같은 동반 질환이 있으면 처방 대상이라는 블로그 설명. 안 맞으면 처방이 안 될 수 있음'],['바늘','퀵펜은 바늘이 따로일 수 있음. 처방에 포함되는지 물어봄'],['서류','처방전, 영수증(发票), 약 원포장 상자 챙김'],['원칙','본인 사용분만 구입함. 서로 사다 주거나 나눠 주지 않음']]},
+  {sep:'점심 · 구시가지'},
+  {t:'12:30',title:'중산로에서 점심',team:'all',tag:'후보',cand:true,desc:'춘화루 먼저, 사람이 많으면 동방자오차(딤섬)로 바꿈. 병원이 길어지면 점심은 병원 근처에서 해결하고 구시가지 코스를 줄임. 약은 보냉백에 넣어 들고 다님.',places:[45,43]},
+  {t:'13:45',title:'성미카엘 성당',team:'all',desc:'금요일이라 내부 입장 가능. 맞은편 기념품숍 구경함.',notes:[['입장료','1인 10위안']],places:[40]},
+  {t:'14:30',title:'잔교 산책',team:'all',desc:'성당에서 바다 쪽으로 걸으면 잔교 나옴. 칭다오 맥주 로고에 그려진 건축물임.',places:[49]},
+  {t:'15:30',title:'맥주박물관으로 이동',team:'all',tag:'예약 필요',desc:'택시로 이동해서 16:00 타임에 입장함. 시간대별 입장이라 미리 예약해야 함. 기존 일정이랑 같음.',notes:[['입장료','일반 약 1.2만 원 / 기념품 패키지 약 1.7만 원']],places:[64]},
+  {sep:'저녁 · 밤'},
+  {t:'17:15',title:'숙소 들러 약 냉장 보관 + 쉬기',team:'all',tag:'남는 시간',desc:'병원에서 받은 약이 보냉백에서 너무 오래 버티지 않게 숙소 냉장고에 넣음. 냉동실에 넣으면 약이 얼어서 못 쓰니까 냉장실에 넣음. 남는 시간에 편하게 쉼.'},
+  {t:'18:30경',title:'타이동에서 양꼬치 저녁',team:'all',tag:'예상',desc:'기존 2일차랑 같은 코스임. 대하푸는 웨이팅이 없다는 후기라 무난함. 실내 흡연이 되는 가게라 참고.',places:[38,37]},
+  {t:'20:00경',title:'타이동 야시장',team:'all',tag:'예상',desc:'간식 들고 천천히 걷는 밤 산책임. 노점 운영은 현장에서 확인함.',places:[36,39]},
+  {t:'21:30경',title:'발마사지는 선택',team:'all',tag:'선택',cand:true,desc:'야시장 근처 가성비 발마사지집. 위챗으로 예약함.',places:[35]},
+  {t:'22:30경',title:'택시로 숙소 복귀',team:'all',tag:'예상',desc:'디디 택시 한 대에 5명 탐. 약이 냉장고에 있는지 확인하고 잠.'}
+ ]},
+ {id:'mj-d3',label:'3일차',date:'11/28 토 · 마운자로 플랜',intro:'기존 3일차랑 거의 같음. 오전에 예비 슬롯 하나를 두고, 저녁에 짐 정리할 때 약도 같이 챙김.',items:[
+  {sep:'오전 · 점심'},
+  {t:'09:00 – 10:30',title:'예비 슬롯: 병원·약국 재시도',team:'all',tag:'필요할 때만',cand:true,desc:'2일차에 처방이나 약 재고가 해결 안 된 친구만 씀. 토요일은 외래가 줄 수 있어서 전날 병원에 전화로 확인함. 다 해결됐으면 이 칸은 건너뛰고 늦잠 잠. 재시도를 쓰면 소어산이나 루쉰공원 중 하나를 빼고 점심부터 이어감.',places:['M2']},
+  {t:'10:30',title:'늦잠 + 든든한 아침',team:'all',desc:'이날이 제일 많이 걷는 날이라 아침 든든하게 먹고 나감.'},
+  {t:'11:00',title:'소어산 공원 (북문)',team:'all',desc:'붉은 지붕이랑 푸른 바다 한눈에 보이는 전망 명소임. 북문에서 내리면 정상까지 5분이라 편함.',places:[53]},
+  {t:'12:00',title:'루쉰공원 해안 산책길',team:'all',desc:'소어산 다음 코스로 바다 따라 걸음. 이어서 팔대관 쪽으로 걸어가도 됨.',places:[52]},
+  {t:'12:45',title:'팔대관 + 화석루 구경',team:'all',tag:'선택',desc:'1930년대 유럽식 별장 거리. 엑셀에는 없는 곳이라 한자 이름만 적어둠.',keys:[{zh:'八大关',ko:'팔대관'},{zh:'花石楼',ko:'화석루'}]},
+  {t:'13:30',title:'점심: 화춘식당',team:'all',desc:'현지인들이 가는 집이고 가지볶음, 가리비 요리, 바지락볶음이 후기에 많이 나옴.',places:[54]},
+  {sep:'오후'},
+  {t:'15:00',title:'마트 기념품 쇼핑 + 휴식',team:'all',desc:'기념품은 이때 한 번에 삼. 약은 계속 보냉백에 넣어 다니거나 숙소 냉장고에 둠.',places:[29]},
+  {t:'17:00',title:'영족당 발마사지',team:'all',tag:'예약 필요',desc:'믹스몰 쪽이라 마트 구경 끝나고 택시로 이동함. 위챗으로 미리 예약함.',places:[1]},
+  {sep:'저녁 · 밤'},
+  {t:'19:00경',title:'마지막 저녁: 해산물 or 생선요리',team:'all',tag:'후보',cand:true,desc:'기존 3일차랑 같음. 루위는 사람이 많아서 16:30 오픈런이 좋고 14:30~16:30은 브레이크타임임.',places:[11]},
+  {t:'21:00경',title:'짐 정리 + 약 포장',team:'all',tag:'남는 시간',desc:'약, 처방전, 영수증, 원포장 상자는 기내 반입 가방에 따로 모음. 얼음팩은 프런트에 다시 냉동 부탁함. 위탁 수하물에는 절대 넣지 않음. 4일차는 07:00 출발이라 길게 안 잡음.'}
+ ]}
+];
+
+const MJ_CARDS={
+ c1:['1. 먼저 알아둘 것',[
+  '이건 선택 플랜임. 안 가기로 하면 이 탭은 무시하고 기존 2·3일차 그대로 가면 됨.',
+  '마운자로(중국명 穆峰达, 성분명 替尔泊肽)는 중국에서도 처방약이라 병원에서 의사 진료를 받아야 살 수 있음.',
+  '처방은 현지 의사가 정함. 기준에 안 맞으면 처방이 안 나올 수 있음.',
+  '구입이랑 한국 반입은 각자 본인 사용분만 함. 서로 사다 주거나 나눠 주는 건 안 됨.',
+  '병원 후보와 가격은 공식 자료가 아니라 블로그·커뮤니티 정리글 기준임. 칭다오에서 외국인이 실제로 처방받은 사례는 확인 못 해서, 병원에 미리 전화로 확인해야 함.'],true],
+ c2:['2. 약 정보 · 가격',[
+  '중국은 퀵펜 1개에 4회분(4주)이 들어 있음. 한국처럼 1회용 펜이 아님.',
+  '퀵펜은 바늘을 따로 끼워 쓰는 방식이라 처방에 바늘·알코올솜이 포함되는지 확인함. 없으면 4~5mm 인슐린 펜 니들을 약국에서 삼.',
+  '용량은 2.5 / 5 / 7.5 / 10mg. 12.5·15mg은 중국에서 판매 안 됨.',
+  '가격은 1펜(4주분) 기준으로 2.5mg 약 324위안(약 6.5만 원), 5mg 약 500~600위안, 7.5mg·10mg 약 15만~19만 원대라는 블로그 설명. 병원 약가는 가서 확인함.',
+  '진료비는 공립 일반 외래가 수십 위안, 국제진료부나 사립 국제병원은 수백 위안 이상이라는 설명. 한국은 2.5mg이 약 28만~35만 원대.']],
+ c5:['5. 출국 전 사전 준비 (11/22 ~ 11/25)',[
+  '병원 24시간 예약 전화(+86-532-8291-2071)로 영어 문의함. 중국은 한국보다 1시간 느림.',
+  '물어볼 것: 외국인 여행자가 체중관리 목적으로 마운자로 처방을 받을 수 있는지 / 여권만 되는지 / 11/27 금요일 오전 외래 시간과 5명 방문 가능 여부 / 토요일 진료 여부 / 병원 약국에서 당일 구입 가능한지와 재고 / 예상 비용.',
+  '접수 때 현지 전화번호를 요구하는 병원이 많다고 해서 한국·로밍 번호를 적을 준비를 함.',
+  '각자 본인 BMI를 미리 확인함. 처방 기준에 안 맞으면 갈 필요가 없는 사람도 있음.']],
+ c6:['6. 병원 안에서 진행 순서',[
+  '접수(挂号): 1층 접수처나 국제의료부 창구에서 여권 내고 내분비과 또는 체중관리 외래로 접수함. 병원 위챗 예약은 본인인증이 필요할 수 있어서 현장 접수가 안전함.',
+  '진료: 키·체중 측정, 병력·복용 약 확인함. 필요하면 혈액검사 같은 추가 검사를 권할 수 있고 그러면 시간이 더 걸림.',
+  '처방: 의사가 용량과 수량을 정함. 병원에 따라 한 번에 처방 가능한 기간이 1~3개월로 다르다는 후기가 있음.',
+  '수납(缴费): 창구, 자동결제기, 알리페이 중에서 가능한 걸로 냄. 접수·검사·약값을 단계별로 먼저 내는 방식임.',
+  '약 수령(取药): 병원 약국에서 받음. 유효기간, 냉장 상태, 바늘 포함 여부를 확인함.',
+  '처방전, 비용 내역, 영수증, 약 상자 사진을 전부 남김.']],
+ c8:['8. 약 구입 · 결제',[
+  '병원 약국에서 바로 받는 게 제일 안전함. 재고가 없으면 병원 근처 약국을 안내받음.',
+  '위챗 대리상, 처방 없이 파는 곳, 온라인 대리구매는 안 씀. 한국 세관이 인도산 마운자로 9개를 분석했더니 전부 위조품이었음.',
+  '징둥 같은 온라인 앱은 외국인은 중국 신분증 실명인증·현지 계좌·휴대폰 번호 때문에 막히는 경우가 많다고 해서 기본 경로로 안 잡음.',
+  '약을 받을 때 포장에 穆峰达 / 替尔泊肽, 제조사 礼来(Lilly), 용량(mg), 유효기간이 있는지, 냉장 상태인지 확인함.']],
+ c9:['9. 보관 · 이동 · 한국 세관',[
+  '2~8°C 냉장 보관함. 얼면 약효가 없어져 폐기해야 하니까 냉동 금지. 얼음팩이 약에 직접 닿지 않게 지퍼백이나 천으로 감쌈.',
+  '위탁 수하물은 영하로 떨어질 수 있어서 절대 안 넣고, 기내 반입 가방에 넣음. 얼음팩은 완전히 언 상태로 가져가야 보안검색에서 문제가 적음.',
+  '개봉 전 상온 보관은 블로그 기준 30°C 이하에서 최대 21일. 약사나 설명서로 한 번 더 확인하고, 귀국하면 바로 냉장함.',
+  '한국은 2026.11.12부터 해외에서 정상 처방·구매한 자가 치료용 의약품을 본인이 직접 들고 오는 경우 3개월분(주 1회 기준 12~13회분)까지 반입을 허용함.',
+  '중국 퀵펜은 1개가 4회분이라 약 3펜이 상한임. 세관이 개수와 회분 중 무엇으로 세는지는 확인 못 해서 출발 전에 관세청 125에 물어봄.',
+  '식약처는 별도 서류 의무는 없다고 했지만, 처방전·영수증(发票)·약 원포장 상자를 챙기면 설명이 쉬움.',
+  '직구, 택배, 대리 반입은 안 됨. 반복 반입은 통관이 보류될 수 있고, 재판매는 단속 대상임. 반입 허용이 곧 면세는 아니라서 세금은 관세청에 확인함.',
+  '해외에서 가져온 약은 부작용이 생겨도 피해구제를 받기 어려움.']],
+ c10:['10. 안전 · 플랜 B',[
+  '첫 주사는 여행 중이 아니라 귀국 후에 국내 의사와 상의하고 시작하는 게 안전함. 메스꺼움 같은 위장 증상이 일정에 영향 줄 수 있음. 최종 판단은 처방 의사랑 함.',
+  '병력(췌장염, 갑상선 수질암 가족력, 임신 계획, 알레르기, 복용 중인 약)은 의사에게 사실대로 말함.',
+  '시야에 이상이 생기면 바로 진료받음(식약처가 11/11에 GLP-1 계열 시신경 질환 안전성 정보를 안내함).',
+  '처방이 안 나오면 대리상이나 위챗으로 우회하지 않고 포기함. 일정은 기존 안으로 돌아감.',
+  '병원 약국에 재고가 없으면 병원 근처 약국을 찾고, 그래도 없으면 3일차 예비 슬롯에 다른 병원을 가봄(토요일 진료 여부는 전화로 확인).',
+  '일부만 처방이 안 나오면 그 친구는 진료만 받고 근처에서 기다리거나 먼저 점심 먹음.',
+  '소통이 너무 어려우면 사립 和睦家가 대안이지만 비용이 높고 처방 여부는 확인 못 함.',
+  '몸이 이상하면 중국 응급 전화는 120.']]
+};
+
+const MJ_PHRASES=[
+ ['접수 창구',[
+  ['체중관리 외래 접수','我是外国游客，这是我的护照。我想挂号，看体重管理门诊。','Wǒ shì wàiguó yóukè, zhè shì wǒ de hùzhào. Wǒ xiǎng guàhào, kàn tǐzhòng guǎnlǐ ménzhěn.'],
+  ['국제의료부 있나요?','请问有国际医疗部吗？','Qǐngwèn yǒu guójì yīliáobù ma?']]],
+ ['진료실',[
+  ['상담 요청','我想咨询减重，想了解替尔泊肽（穆峰达）。','Wǒ xiǎng zīxún jiǎnzhòng, xiǎng liǎojiě tì\'ěrbótài (Mùfēngdá).'],
+  ['키·체중','我身高___厘米，体重___公斤。','Wǒ shēngāo ___ límǐ, tǐzhòng ___ gōngjīn.'],
+  ['병력·복용 약 (해당하면 사실대로)','我有___病史。我正在吃___药。','Wǒ yǒu ___ bìngshǐ. Wǒ zhèngzài chī ___ yào.'],
+  ['이런 약은 처음','我之前没用过这类药。','Wǒ zhīqián méi yòngguo zhè lèi yào.'],
+  ['11/29 귀국, 몇 개 처방되나요?','我只在青岛停留到11月29日。一次能开几支？','Wǒ zhǐ zài Qīngdǎo tíngliú dào shíyī yuè èrshíjiǔ rì. Yí cì néng kāi jǐ zhī?'],
+  ['시작 용량·주사법','起始剂量是多少？怎么注射？请教我一下。','Qǐshǐ jìliàng shì duōshao? Zěnme zhùshè? Qǐng jiào wǒ yíxià.'],
+  ['바늘·알코올솜 포함 여부','处方里包含针头和酒精棉片吗？没有的话在哪里买？','Chǔfāng lǐ bāohán zhēntóu hé jiǔjīng miánpiàn ma? Méiyǒu dehuà zài nǎlǐ mǎi?'],
+  ['냉장·상온 보관','药需要冷藏吗？未开封可以常温放多久？','Yào xūyào lěngcáng ma? Wèi kāifēng kěyǐ chángwēn fàng duōjiǔ?'],
+  ['처방전·영수증 요청','能给我处方、费用清单和发票吗？我要带回国。','Néng gěi wǒ chǔfāng, fèiyòng qīngdān hé fāpiào ma? Wǒ yào dài huíguó.']]],
+ ['약국',[
+  ['재고 확인','这是医生开的处方，请问有货吗？','Zhè shì yīshēng kāi de chǔfāng, qǐngwèn yǒu huò ma?'],
+  ['얼음팩 요청','请帮我拿冰袋，我要冷藏带走。','Qǐng bāng wǒ ná bīngdài, wǒ yào lěngcáng dàizǒu.']]]
+];
+const MJ_EN='I am a Korean tourist visiting Qingdao on Nov 27. Five of us would like to see an endocrinologist about weight management. Can foreign visitors get a tirzepatide (Mounjaro) prescription at your International Medical Department? What should we bring?';
+const MJ_CHECK=['병원에 전화로 외국인 5명 방문 가능 여부 확인 (영어)','여권 원본 (각자)','위챗·알리페이 + 해외카드 연동, 현금 위안화 여유','현지 전화번호 요구 대비: 한국·로밍 번호 준비','보냉백 + 얼음팩 2~3개 + 지퍼백','본인 키·체중·병력·복용 약 메모','처방전·영수증·약 원포장 상자 (사진도 백업)','펜 니들 포함 여부 확인 문장 캡처','관세청 125로 반입 기준 재확인'];
+
+(function(){
+ const card=(k,html)=>`<div class="card"><h3>${esc(k[0])}${k[2]?'<em class="dec">결정 전</em>':''}</h3>${html||`<ul>${k[1].map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`}</div>`;
+ const days=MJ_DAYS.map(d=>`<div id="${d.id}"><h3 class="mjh">${esc(d.label)} <small>${esc(d.date)}</small></h3><p class="intro">${esc(d.intro)}</p><div class="tools"><button type="button" data-toggle="${d.id}">전체 펼치기</button></div>${d.items.map(row).join('')}</div>`).join('');
+ const hosp=card(['3. 병원 후보',[]],`<ul>
+  <li>${esc('1순위는 청대부원 시난 원구임. 네이버에서는 칭다오대학 부속병원으로 찾음. 구시가지 쪽(江苏路)이라 2일차 구시가지 동선이랑 붙음.')}</li>
+  <li>${esc('국제의료부는 영어 서비스가 가능하다고 안내됨. 24시간 예약 전화는 +86-532-8291-2071 / 2072, 서비스센터는 +86-532-96166.')}</li>
+  <li>${esc('2순위는 칭다오시립병원 동원 국제외래. 서비스센터 +86-532-8282-7191. 블로그는 시난구 둥하이시루 쪽 원구라고 소개함.')}</li>
+  <li>${esc('예비로 청양인민병원 국제외래도 후보로 올라와 있는데 주소·전화는 확인 못 함. 시내에서 멀 수 있음.')}</li>
+  <li>${esc('중국 지방 도시는 외국인 처방이 어렵다는 후기도 있어서, 병원 전화 확인이 먼저임.')}</li></ul>${placeCard('M1')}${placeCard('M2')}${placeCard('M3')}`);
+ const phr=`<div class="zhlist">${MJ_PHRASES.map(g=>`<div class="grp">${esc(g[0])}</div>`+g[1].map(i=>`<div class="it"><div class="l"><div class="k">${esc(i[0])}</div><div class="z" lang="zh">${esc(i[1])}</div><div class="k">${esc(i[2])}</div></div><div class="acts">${cp(i[1],'복사')}</div></div>`).join('')).join('')}
+  <div class="grp">병원 사전 문의 (영어)</div><div class="it"><div class="l"><div class="k">전화·메일로 문의할 때</div><div class="z" lang="en">${esc(MJ_EN)}</div></div><div class="acts">${cp(MJ_EN,'복사')}</div></div></div>`;
+ const chk=`<ul class="checks" style="margin-top:10px">${MJ_CHECK.map(c=>`<li><label><input type="checkbox"><span>${esc(c)}</span></label></li>`).join('')}</ul>`;
+ const src=`<div class="card"><h3>참고한 자료</h3><ul>${['식약처·관세청 휴대 반입 허용 보도(연합뉴스·MTN, 2026.11.11~18)','칭다오 병원 목록(중국 국가위생건강위원회 영문 안내)','칭다오 유나이티드 패밀리 병원 공식 사이트','네이버 블로그 "칭다오 마운자로 구매 처방 방법 총정리" (2026.11.20)','스시자로·GitHub·더쿠·다음카페 정리글 (비공식)'].map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p style="font-size:13px;color:var(--muted);margin:8px 0 0">${esc('가격·병원 운영·세관 해석은 바뀔 수 있고, 처방 여부와 용량은 현지 의사가 정함. 위 내용은 의학적 조언이 아니라 정보 정리임. 2026.11.22 기준.')}</p></div>`;
+ document.getElementById('mj').innerHTML=`<section id="mj-sec"><h2>마운자로 플랜 <small style="font-size:14px;color:var(--all);font-weight:500">선택</small></h2>
+  <p class="intro">칭다오에서 마운자로를 처방받기로 하면 보는 탭임. 안 가기로 하면 통째로 무시하고 위의 기존 일정 그대로 가면 됨. 가는 경우엔 2·3일차는 아래 대체 일정을 씀.</p>
+  <div class="decbox"><b>5명 전원이 같이 병원에 가는 걸로 짠 플랜임.</b> 구입도 반입도 각자 본인 사용분만 하고, 서로 사다 주거나 나눠 주지 않음.</div>
+  ${card(MJ_CARDS.c1)}${card(MJ_CARDS.c2)}${hosp}
+  <h3 class="mjh" style="margin-top:22px">4. 마운자로 플랜 일정 (2·3일차 대체)</h3>${days}
+  ${card(MJ_CARDS.c5)}${card(['체크리스트',[]],chk)}${card(MJ_CARDS.c6)}
+  ${card(['7. 병원·약국에서 쓸 중국어',[]],phr)}
+  ${card(MJ_CARDS.c8)}${card(MJ_CARDS.c9)}${card(MJ_CARDS.c10)}${src}</section>`;
+})();
+
+document.getElementById('nav').innerHTML = '<a href="#dep" data-id="dep">출발</a>'+DAYS.map(d=>`<a href="#${d.id}" data-id="${d.id}">${d.label}</a>`).join('')+'<a class="mj" href="#mj-sec" data-id="mj-sec">마운자로</a><a href="#zh-sec" data-id="zh-sec">한자</a><a href="#info-sec" data-id="info-sec">정보</a>';
 
 function copyText(t,btn){
   const ok=()=>{ const o=btn.textContent; btn.textContent='복사됨'; btn.classList.add('done'); setTimeout(()=>{btn.textContent=o;btn.classList.remove('done')},1200); };
